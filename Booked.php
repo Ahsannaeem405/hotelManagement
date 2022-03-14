@@ -17,7 +17,7 @@
     
     <!-- navbar start -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="/bookingPlatform/Booking.php">
                 <img src="./img/logo.png" alt="" class="img-fluid">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,13 +27,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
                 <li class="nav-item ">
-                  <a class="nav-link" href="#">Book Room </a>
+                  <a class="nav-link" href="/bookingPlatform/Booking.php">Book Room </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Booked Rooms</a>
+                  <a class="nav-link" href="/bookingPlatform/Booked.php">Booked Rooms</a>
                 </li>
                 <li class="nav-item ">
-                    <a class="nav-link" href="#">Search</a>
+                    <a class="nav-link" href="/bookingPlatform/Rooms.php">Search</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link auth" href="#">Logout</a>
@@ -43,7 +43,7 @@
           </nav>
 
           <!-- section booked rooms start -->
-          <div class="container">
+          <div class="container mt-5">
             <section class="booked-rooms p-4">
                <div class="row">
                    <div class="col-12">
