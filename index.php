@@ -20,7 +20,7 @@
     
     <!-- navbar start -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="/bookingPlatform/Booking.php">
+            <a class="navbar-brand" href="/Booking.php">
                 <img src="./img/logo.png" alt="" class="img-fluid">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,10 +30,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
                 <li class="nav-item ">
-                  <a class="nav-link" href="/bookingPlatform/signup.php">Register</a>
+                  <a class="nav-link" href="/signup.php">Register</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/bookingPlatform">Login</a>
+                  <a class="nav-link" href="/">Login</a>
                 </li>
               </ul>
             </div>
