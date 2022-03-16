@@ -1,5 +1,14 @@
 
-
+@php
+    // $url=$_SERVER['REQUEST_URI'];
+    if(isset($_GET['corridor_id']) )
+    {
+        $corridor= $_GET['corridor_id'];
+         $room= $_GET['room_id'];
+    }
+   
+    // dd( $room);
+@endphp
 @extends('front.layout.header')
 @section('content')
              
@@ -29,7 +38,7 @@
                                 <div class="col-lg-4 col-md-6 col-12 mt-0 mt-md-2">
                                     <div class="form-group text-center">
                                         <label >Full Name</label>
-                                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror">
+                                        <input type="text" name="name" value="{{Auth::user()->name}}" class="form-control @error('name') is-invalid @enderror">
                                         @error('name')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
@@ -40,7 +49,7 @@
                                 <div class="col-lg-4 col-md-6 col-12 mt-0 mt-md-2">
                                     <div class="form-group text-center">
                                         <label >Email</label>
-                                        <input type="email" name="email" value="{{Auth::user()->}}" class="form-control  @error('email') is-invalid @enderror">
+                                        <input type="email" name="email" value="{{Auth::user()->email}}" class="form-control  @error('email') is-invalid @enderror">
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -64,9 +73,9 @@
                                         <label >Corridor</label>
                                         <select class="form-control  @error('corridor_id') is-invalid @enderror" id="corridor" name="corridor_id"  id="inputGroupSelect01">
                                            
-                                            <option value="1" >Corridor 1</option>
-                                            <option value="2">Corridor 2</option>
-                                            <option value="3">Corridor 3</option>
+                                            <option value="1" @if(isset($corridor)) @if( $corridor == 1) selected @endif @endif >Corridor 1</option>
+                                            <option value="2" @if(isset($corridor)) @if( $corridor == 2) selected @endif @endif>Corridor 2</option>
+                                            <option value="3" @if(isset($corridor))  @if( $corridor == 3) selected @endif @endif>Corridor 3</option>
                                         </select>
                                         @error('corridor_id')
                                         <span class="invalid-feedback" role="alert">
@@ -80,7 +89,7 @@
                                         <label >Room</label>
                                             <select class="custom-select room form-control  @error('room_id') is-invalid @enderror" name="room_id" id="inputGroupSelect01">
                                                 @foreach($room_details as $list)
-                                                <option value="{{$list->id}}">{{$list->room_name}}</option>
+                                                <option value="{{$list->id}}"  @if(isset($room))  @if( $room == $list->room_id) selected @endif @endif >{{$list->room_name}}</option>
                                                
                                                 @endforeach
                                             </select>

@@ -107,16 +107,16 @@ if($request->size_room1 != '' || $request->size_room2 != '' || $request->size_ro
 $query=\DB::table('room_details');
 if($request->size_room1 == 'small')
 {
-    $query= $query->where('room_size', 'LIKE', '%' . $request->size_room1 . '%');
+    $query= $query->where('room_size', $request->size_room1);
 }
 if($request->size_room2 == 'medium')
 {
-   $query= $query->orwhere('room_size', 'LIKE', '%' . $request->size_room2 . '%');
+   $query= $query->orwhere('room_size',$request->size_room2);
 
 }
 if($request->size_room3 == 'large')
 {
-    $query= $query->orwhere('room_size', 'LIKE', '%' . $request->size_room3 . '%');
+    $query= $query->orwhere('room_size',$request->size_room3);
 
 }
 if($request->corridor1 == '1')
