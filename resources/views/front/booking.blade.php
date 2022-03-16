@@ -40,7 +40,7 @@
                                 <div class="col-lg-4 col-md-6 col-12 mt-0 mt-md-2">
                                     <div class="form-group text-center">
                                         <label >Email</label>
-                                        <input type="email" name="email" class="form-control  @error('email') is-invalid @enderror">
+                                        <input type="email" name="email" value="{{Auth::user()->}}" class="form-control  @error('email') is-invalid @enderror">
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
