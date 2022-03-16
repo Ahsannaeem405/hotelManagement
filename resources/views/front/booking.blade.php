@@ -51,7 +51,7 @@
                                 <div class="col-lg-4 col-md-6 col-12 mt-0 mt-md-2">
                                     <div class="form-group text-center">
                                         <label >How many people?</label>
-                                        <input type="number" name="no_people" class="form-control  @error('no_people') is-invalid @enderror">
+                                        <input type="number" min="1" max="10" name="no_people" class="form-control  @error('no_people') is-invalid @enderror">
                                         @error('no_people')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -64,7 +64,7 @@
                                         <label >Corridor</label>
                                         <select class="form-control  @error('corridor_id') is-invalid @enderror" id="corridor" name="corridor_id"  id="inputGroupSelect01">
                                            
-                                            <option value="1">Corridor 1</option>
+                                            <option value="1" >Corridor 1</option>
                                             <option value="2">Corridor 2</option>
                                             <option value="3">Corridor 3</option>
                                         </select>

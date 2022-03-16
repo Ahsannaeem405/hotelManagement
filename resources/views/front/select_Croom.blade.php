@@ -1,4 +1,4 @@
 @foreach($room_details as $list)
-<option value="{{$list->room_id}}">{{$list->room_name}}</option>
+<option value="{{$list->id}}">{{$list->room_name}}</option>
 
 @endforeach

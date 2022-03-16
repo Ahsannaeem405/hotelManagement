@@ -86,14 +86,14 @@
                                             </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-12 text-center py-5">
-                                            <button  type="button" data-toggle="modal" data-target=".bd-example-modal-lg{{$list->id}}" class="btn book-btn my-5 w-75">Book</button>
+                                        <a href="booking?corridor_id={{$list->corridor_id}}&room_id={{$list->room_id}}" class="btn book-btn my-5 w-75">Book</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         
                             <!-- Large modal -->
-
+{{-- 
 <div class="modal fade bd-example-modal-lg{{$list->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -161,7 +161,7 @@
      
     </div>
   </div>
-</div>
+</div> --}}
 
                         @endforeach
                         

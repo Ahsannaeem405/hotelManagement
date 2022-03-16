@@ -35,13 +35,13 @@
                                         <div class="col-lg-4 col-md-12 mt-lg-2 mt-0">
                                             <div class="form-group mb-0 mb-md-2 mb-lg-3">
                                                 <label >Booking Start Time</label>
-                                                <input type="text" readonly value="{{date('h:s A',strtotime($list1->start_time))}}" class="form-control" >
+                                                <input type="text" readonly value="{{date('h:i A',strtotime($list1->start_time))}}" class="form-control" >
                                               </div>
                                         </div>
                                         <div class="col-lg-4 col-md-12 mt-lg-2 mt-0">
                                             <div class="form-group mb-0 mb-md-2 mb-lg-3">
                                                 <label>Booking End Time</label>
-                                                <input type="text" readonly  value="{{date('h:s A',strtotime($list1->end_time))}}" class="form-control">
+                                                <input type="text" readonly  value="{{date('h:i A',strtotime($list1->end_time))}}" class="form-control">
                                               </div>
                                         </div>
                                         <div class="col-lg-4 col-md-12 mt-lg-2 mt-0">
