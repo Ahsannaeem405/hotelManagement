@@ -87,7 +87,7 @@
                                             </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-12 text-center py-5">
-                                        <a href="booking?corridor_id={{$list->corridor_id}}&room_id={{$list->room_id}}" class="btn book-btn my-5 w-75">Book</a>
+                                        <a href="booking?corridor_id={{$list->corridor_id}}&room_id={{$list->room_id}}&room={{$list->id}}" class="btn book-btn my-5 w-75">Book</a>
                                     </div>
                                 </div>
                             </div>

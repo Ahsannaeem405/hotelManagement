@@ -5,6 +5,7 @@
     {
         $corridor= $_GET['corridor_id'];
          $room= $_GET['room_id'];
+         $room_id= $_GET['room'];
     }
    
     // dd( $room);
@@ -71,12 +72,15 @@
                                 <div class="col-lg-4 col-md-6 col-12 mt-0 mt-md-2">
                                     <div class="form-group text-center">
                                         <label >Corridor</label>
-                                        <select class="form-control  @error('corridor_id') is-invalid @enderror" id="corridor" name="corridor_id"  id="inputGroupSelect01">
+                                        <select class="form-control  @error('corridor_id') is-invalid @enderror" @if(isset($corridor)) disabled @endif  name="corridor_id" id="inputGroupSelect01">
                                            
-                                            <option value="1" @if(isset($corridor)) @if( $corridor == 1) selected @endif @endif >Corridor 1</option>
-                                            <option value="2" @if(isset($corridor)) @if( $corridor == 2) selected @endif @endif>Corridor 2</option>
-                                            <option value="3" @if(isset($corridor))  @if( $corridor == 3) selected @endif @endif>Corridor 3</option>
+                                            <option value="1" @if(isset($corridor)) @if( $corridor == 1) selected   @endif @endif >Corridor 1</option>
+                                            <option value="2" @if(isset($corridor)) @if( $corridor == 2) selected   @endif @endif>Corridor 2</option>
+                                            <option value="3" @if(isset($corridor))  @if( $corridor == 3) selected   @endif @endif>Corridor 3</option>
                                         </select>
+                                        @if(isset($room)) 
+                                        <input type="hidden" value="{{$corridor}}" name="corridor_id">
+                                        @endif
                                         @error('corridor_id')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -86,13 +90,16 @@
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-12 mt-0 mt-md-2">
                                     <div class="form-group text-center">
-                                        <label >Room</label>
-                                            <select class="custom-select room form-control  @error('room_id') is-invalid @enderror" name="room_id" id="inputGroupSelect01">
+                                        <label>Room</label>
+                                            <select class="custom-select room form-control  @error('room_id') is-invalid @enderror" @if(isset($room)) disabled @endif name="room_id" id="inputGroupSelect01">
                                                 @foreach($room_details as $list)
-                                                <option value="{{$list->id}}"  @if(isset($room))  @if( $room == $list->id) selected @endif @endif >{{$list->room_name}}</option>
+                                                <option value="{{$list->id }}"  @if(isset($room))  @if( $room == $list->id) selected  @endif @endif >{{$list->room_name}}</option>
                                                
                                                 @endforeach
                                             </select>
+                                            @if(isset($room)) 
+                                            <input type="hidden" value="{{$room}}" name="room_id">
+                                            @endif
                                             @error('room_id')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
