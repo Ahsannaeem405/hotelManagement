@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Collection;
 
 class BookingController extends Controller
 {
@@ -100,42 +101,28 @@ $request->validate([
 
     public function search_room(Request $request)
     {
-         //dd($request->input());
-
-if($request->size_room1 != '' || $request->size_room2 != '' || $request->size_room3 != '' ||  $request->corridor1 != '' ||  $request->corridor2 != '' ||  $request->corridor3 != '') {
-
-$query=\DB::table('room_details');
-if($request->size_room1 == 'small')
-{
-    $query= $query->where('room_size', $request->size_room1);
-}
-if($request->size_room2 == 'medium')
-{
-   $query= $query->orwhere('room_size',$request->size_room2);
-
-}
-if($request->size_room3 == 'large')
-{
-    $query= $query->orwhere('room_size',$request->size_room3);
-
-}
-if($request->corridor1 == '1')
-{
-    $query= $query->orwhere('corridor_id', $request->corridor1);
-}
-if($request->corridor2 == '2')
-{
-    $query= $query->orwhere('corridor_id',$request->corridor2);
-}
-if($request->corridor3 == '3')
-{
-    $query= $query->orwhere('corridor_id',$request->corridor3);
-}
-$query= $query->get();
-return view('front/searchRoom',compact('query'));
-}else{
-    return redirect()->back()->with('error','Not Data Available!');
-}
+       
+        if($request->corridor != '' || $request->size_room != '')
+    {
+        if( $request->corridor != '')
+        {
+          $corridor=$request->corridor;
+        }else{
+            $corridor=[];   
+        }
+        if($request->size_room != '')
+        {
+          $size_room=$request->size_room;
+        }else{
+            $size_room=[];
+        }
+        $search['query']=RoomDetails::whereIn('room_size', $size_room)
+        ->whereIn('corridor_id', $corridor)
+        ->get();
+    }else{
+        $search['query']=RoomDetails::get();
+    }
+        return view('front/searchRoom',$search);
         
 }
 

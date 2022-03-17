@@ -16,19 +16,19 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-12 mb-2 ">
                                             <div class="form-check">
-                                                <input type="checkbox" name="size_room1" id="small" value="small" class="form-check-input">
+                                                <input type="checkbox" name="size_room[]" id="small" value="small" class="form-check-input">
                                                 <label class="form-check-label" >Small Room</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="size_room2"  id="medium" value="medium" class="form-check-input">
+                                                <input type="checkbox" name="size_room[]"  id="medium" value="medium" class="form-check-input">
                                                 <label class="form-check-label" >Medium Room</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="size_room3" id="large" value="large" class="form-check-input">
+                                                <input type="checkbox" name="size_room[]" id="large" value="large" class="form-check-input">
                                                 <label class="form-check-label" >large Room</label>
                                             </div>
                                         </div>
@@ -36,19 +36,19 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="corridor1" id="corridor1" value="1" class="form-check-input">
+                                                <input type="checkbox" name="corridor[]" id="corridor1" value="1" class="form-check-input">
                                                 <label class="form-check-label" >Corridor 1</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="corridor2" id="corridor2" value="2" class="form-check-input">
+                                                <input type="checkbox" name="corridor[]" id="corridor2" value="2" class="form-check-input">
                                                 <label class="form-check-label" >Corridor 2</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="corridor3" id="corridor3" value="3" class="form-check-input">
+                                                <input type="checkbox" name="corridor[]" id="corridor3" value="3" class="form-check-input">
                                                 <label class="form-check-label" >Corridor 3</label>
                                             </div>
                                         </div>
@@ -72,6 +72,7 @@
                     <div class="row">
                       
                         @foreach($room_details as $list)
+                     
                         <div class="col-md-6 col-12 mt-5">
                             <div class="bookNow-card">
                                 <div class="row align-items-center ">
