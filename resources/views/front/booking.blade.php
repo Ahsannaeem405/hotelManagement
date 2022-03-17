@@ -89,7 +89,7 @@
                                         <label >Room</label>
                                             <select class="custom-select room form-control  @error('room_id') is-invalid @enderror" name="room_id" id="inputGroupSelect01">
                                                 @foreach($room_details as $list)
-                                                <option value="{{$list->id}}"  @if(isset($room))  @if( $room == $list->room_id) selected @endif @endif >{{$list->room_name}}</option>
+                                                <option value="{{$list->id}}"  @if(isset($room))  @if( $room == $list->id) selected @endif @endif >{{$list->room_name}}</option>
                                                
                                                 @endforeach
                                             </select>

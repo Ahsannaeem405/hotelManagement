@@ -75,7 +75,7 @@ class BookingController extends Controller
         $roomBook->room_comp_time=$endFinshTime;
         $roomBook->special_equip=$request->special_equip;
         $roomBook->save();
-        return redirect()->back()->with('success','Booking successfully submited!');
+        return redirect()->back()->with('success','Booking successfully submitted!');
      }else{
         return redirect()->back()->with('error','Already this corridor room booked , please try another corridor room booking!');
          }
