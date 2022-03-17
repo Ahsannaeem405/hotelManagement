@@ -98,7 +98,7 @@
                                                 @endforeach
                                             </select>
                                             @if(isset($room)) 
-                                            <input type="hidden" value="{{$room}}" name="room_id">
+                                            <input type="hidden" value="{{$room_id}}" name="room_id">
                                             @endif
                                             @error('room_id')
                                             <span class="invalid-feedback" role="alert">
@@ -191,3 +191,4 @@
           });
       });
   </script>
+  
