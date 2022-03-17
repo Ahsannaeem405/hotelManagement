@@ -50,7 +50,7 @@ class BookingController extends Controller
                     'end_time' => 'required',
                     'special_equip' => 'required',
                 ]);
-/
+
     $check_Book=BookingRoom::whereDate('start_date', '=',$request->start_date)
     ->where('corridor_id',$request->corridor_id )
     ->where('room_id',$request->room_id )
@@ -84,28 +84,31 @@ class BookingController extends Controller
 
     public function search_room(Request $request)
     {
-       
-        if($request->corridor != '' || $request->size_room != '')
+        
+    if($request->corridor != '' && $request->size_room != '')
     {
-        if( $request->corridor != '')
-        {
+        
           $corridor=$request->corridor;
-        }else{
-            $corridor=[];   
-        }
-        if($request->size_room != '')
-        {
           $size_room=$request->size_room;
-        }else{
-            $size_room=[];
-        }
-        $search['query']=RoomDetails::whereIn('room_size', $size_room)
+  
+        $room_details['room_details']=RoomDetails::whereIn('room_size', $size_room)
         ->whereIn('corridor_id', $corridor)
         ->get();
+       
+
+    }elseif($request->size_room != ''){
+        $size_room=$request->size_room;
+        $room_details['room_details']=RoomDetails::whereIn('room_size', $size_room) ->get();
+    }elseif($request->corridor != '')
+    {
+        $corridor=$request->corridor;
+        $room_details['room_details']=RoomDetails::whereIn('corridor_id', $corridor)->get();
     }else{
-        $search['query']=RoomDetails::get();
+        //$search['query']=RoomDetails::get();
+        $room_details['room_details']=RoomDetails::get();
+        return view('front.index',$room_details);
     }
-        return view('front/searchRoom',$search);
+    return view('front.index',$room_details);
         
 }
 
