@@ -21,9 +21,6 @@ class BookingController extends Controller
     {
    
         $BookingRoom['BookingRoom']=User::where('id',Auth::user()->id)->get();
-        // $BookingRoom['BookingRoom']=RoomDetails::get();
-        //  dd($BookingRoom['BookingRoom'][0]->RoomBookUser);
-        //  dd($BookingRoom['BookingRoom'][0]->RoomBookDetails);
         return view('front/booked',$BookingRoom);
     }
     public function booking()
@@ -37,38 +34,29 @@ class BookingController extends Controller
         $corridor_id=$request->corridor_id;
         $room_details['room_details']=RoomDetails::where('corridor_id', $corridor_id)->get();
         return view('front.select_Croom',$room_details);
-        // dd($room_details['room_details']);
     }
 
     public function roomBooing(Request $request)
     {
        
-$request->validate([
-    'name' => 'required',
-    'no_people' => 'required',
-    'email' => 'required',
-    'corridor_id' => 'required',
-    'room_id' => 'required',
-    'start_date' => 'required',
-    'start_time' => 'required',
-    'end_time' => 'required',
-    'special_equip' => 'required',
-]);
-// $newDateTime = Carbon::parse($request->start_time)->addHours(1);
-             
-// dd($newDateTime,$request->start_time);
-// die();
+                $request->validate([
+                    'name' => 'required',
+                    'no_people' => 'required',
+                    'email' => 'required',
+                    'corridor_id' => 'required',
+                    'room_id' => 'required',
+                    'start_date' => 'required',
+                    'start_time' => 'required',
+                    'end_time' => 'required',
+                    'special_equip' => 'required',
+                ]);
+/
     $check_Book=BookingRoom::whereDate('start_date', '=',$request->start_date)
     ->where('corridor_id',$request->corridor_id )
     ->where('room_id',$request->room_id )
     ->where('room_comp_time', '>', $request->start_time )
     ->orderBy('id','DESC')->first();
-     //dd($check_Book);
-    
-//     $newDateTime = Carbon::parse($check_Book->end_time)->addHours(1);
-//     // $check_Book=BookingRoom::where('end_time', '>', $request->start_time )
-//     // ->orderBy('start_date','DESC')->first();     
-//    // dd($request->start_time > $newDateTime);
+
      if($check_Book == null)
     {
         $newDateTime = Carbon::parse($request->end_time)->addHours(1);
@@ -87,15 +75,10 @@ $request->validate([
         $roomBook->room_comp_time=$endFinshTime;
         $roomBook->special_equip=$request->special_equip;
         $roomBook->save();
-
-        
         return redirect()->back()->with('success','Booking successfully submited!');
-
-    }else{
-        // dd(2);
+     }else{
         return redirect()->back()->with('error','Already this corridor room booked , please try another corridor room booking!');
-
-    }
+         }
     }
 
 
@@ -125,7 +108,5 @@ $request->validate([
         return view('front/searchRoom',$search);
         
 }
-
-
 
 }
