@@ -111,7 +111,7 @@
                                 <div class="col-lg-4 col-md-6 col-12 mt-0 mt-md-2">
                                     <div class="form-group text-center">
                                         <label >Start Date</label>
-                                        <input type="date" name="start_date" class="form-control  @error('start_date') is-invalid @enderror">
+                                        <input type="date" name="start_date" min="<?php echo date("Y-m-d"); ?>" class="form-control  @error('start_date') is-invalid @enderror">
                                         @error('start_date')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -124,7 +124,7 @@
                                 <div class="col-lg-4 col-md-6 col-12 mt-0 mt-md-2">
                                     <div class="form-group text-center">
                                         <label >Booking Start Time</label>
-                                        <input type="time" name="start_time" class="form-control  @error('start_time') is-invalid @enderror">
+                                        <input type="time" name="start_time"   class="form-control  @error('start_time') is-invalid @enderror">
                                         @error('start_time')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -135,7 +135,7 @@
                                 <div class="col-lg-4 col-md-6 col-12 mt-0 mt-md-2">
                                     <div class="form-group text-center">
                                         <label >Booking End Time</label>
-                                        <input type="time" name="end_time" class="form-control  @error('end_time') is-invalid @enderror">
+                                        <input type="time" name="end_time"  class="form-control  @error('end_time') is-invalid @enderror">
                                         @error('end_time')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -174,6 +174,8 @@
 
   <script>
       $(document).ready(function(){
+
+          
           $('#corridor').on('change',function(){
                 var cId = $(this).val();
 
@@ -190,5 +192,21 @@
               });
           });
       });
+  </script>
+  <script>
+      $(function(){
+    var dtToday = new Date();
+    
+    var month = dtToday.getMonth() + 1;
+    var day = dtToday.getDate();
+    var year = dtToday.getFullYear();
+    if(month < 10)
+        month = '0' + month.toString();
+    if(day < 10)
+        day = '0' + day.toString();
+    
+    var minDate= year + '-' + month + '-' + day;
+    
+    $('#txtDate').attr('min', minDate);
   </script>
   

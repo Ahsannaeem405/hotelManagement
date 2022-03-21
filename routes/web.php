@@ -30,7 +30,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/booking',[BookingController::class,'booking']);
     Route::get('/getRoom',[BookingController::class,'getRoom']);
     Route::post('/roomBooing',[BookingController::class,'roomBooing']);
-    Route::post('/search_room',[BookingController::class,'search_room']);
+    Route::get('/search_room',[BookingController::class,'search_room']);
 });
 
 Auth::routes();

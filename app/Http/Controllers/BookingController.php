@@ -46,9 +46,9 @@ class BookingController extends Controller
                     'corridor_id' => 'required',
                     'room_id' => 'required',
                     'start_date' => 'required',
-                    'start_time' => 'required',
-                    'end_time' => 'required',
-                    'special_equip' => 'required',
+                    'start_time' => 'required|date_format:H:i',
+                    'end_time' => 'required|date_format:H:i|after:start_time',
+                  
                 ]);
 
     $check_Book=BookingRoom::whereDate('start_date', '=',$request->start_date)
@@ -77,14 +77,15 @@ class BookingController extends Controller
         $roomBook->save();
         return redirect()->back()->with('success','Booking successfully submitted!');
      }else{
-        return redirect()->back()->with('error','Already this corridor room booked , please try another corridor room booking!');
+        return redirect()->back()->with('error',' This Room is already booked for this date and time please choose another room or Date time.');
          }
     }
 
 
     public function search_room(Request $request)
     {
-        
+//      $arr  = in_array('medium', $request->size_room);
+// dd($arr);
     if($request->corridor != '' && $request->size_room != '')
     {
         

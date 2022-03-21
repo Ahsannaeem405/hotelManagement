@@ -79,7 +79,7 @@
                     <div class="col-12">
                         <div class="booked-rooms-card mt-4">
                             <div class="row justify-content-center">
-                                <h6 class="py-4">Booking not available!</h6>
+                                <h6 class="py-4">There is no active booking at this moment!</h6>
                             </div>
                         </div>
                     </div>                                

@@ -11,24 +11,35 @@
                            <div class="booking-filter px-5 py-4">
                                <div class="row justify-content-center align-items-center">
                                 <div class="col-lg-9 col-12 ">
-                                    <form action="{{url("search_room")}}" method="POST">
-                                        @csrf
+                                    <form action="{{url("search_room")}}" method="GET">
+                                        @php
+                                        if(isset($_GET['size_room']))
+                                        {
+                                            $size_room=$_GET['size_room'];
+                                        }
+                                        if(isset($_GET['corridor']))
+                                        {
+                                            $corridor=$_GET['corridor'];
+                                        }
+                                          
+                                          
+                                        @endphp
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-12 mb-2 ">
                                             <div class="form-check">
-                                                <input type="checkbox" name="size_room[]" id="small" value="small" class="form-check-input">
+                                                <input type="checkbox" @if(isset( $size_room)) @if( in_array('small', $size_room)) checked @endif @endif  name="size_room[]" id="small" value="small" class="form-check-input">
                                                 <label class="form-check-label" >Small Room</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="size_room[]"  id="medium" value="medium" class="form-check-input">
+                                                <input type="checkbox" name="size_room[]"  id="medium" value="medium" @if(isset( $size_room)) @if(in_array('medium', $size_room)) checked @endif @endif class="form-check-input">
                                                 <label class="form-check-label" >Medium Room</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="size_room[]" id="large" value="large" class="form-check-input">
+                                                <input type="checkbox" name="size_room[]" id="large" value="large" @if(isset( $size_room))  @if(in_array('large', $size_room)) checked @endif @endif class="form-check-input">
                                                 <label class="form-check-label" >large Room</label>
                                             </div>
                                         </div>
@@ -36,19 +47,19 @@
                                     <div class="row">
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="corridor[]" id="corridor1" value="1" class="form-check-input">
+                                                <input type="checkbox" name="corridor[]"  @if(isset( $corridor)) @if( in_array('1', $corridor)) checked @endif @endif id="corridor1" value="1" class="form-check-input">
                                                 <label class="form-check-label" >Corridor 1</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="corridor[]" id="corridor2" value="2" class="form-check-input">
+                                                <input type="checkbox" name="corridor[]" id="corridor2"  @if(isset( $corridor)) @if( in_array('2', $corridor)) checked @endif @endif value="2" class="form-check-input">
                                                 <label class="form-check-label" >Corridor 2</label>
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-4 col-12 mb-2">
                                             <div class="form-check">
-                                                <input type="checkbox" name="corridor[]" id="corridor3" value="3" class="form-check-input">
+                                                <input type="checkbox" name="corridor[]" id="corridor3" value="3"  @if(isset( $corridor)) @if( in_array('3', $corridor)) checked @endif @endif class="form-check-input">
                                                 <label class="form-check-label" >Corridor 3</label>
                                             </div>
                                         </div>
