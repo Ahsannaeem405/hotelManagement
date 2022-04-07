@@ -83,9 +83,9 @@ class BookingController extends Controller
                             'body' => 'This is for testing email using smtp'
                         ];
                        
-                        \Mail::to('your_receiver_email@gmail.com')->send(new \App\Mail\BookingMail($details));
+                        \Mail::to(Auth::user()->email)->send(new \App\Mail\BookingMail($details));
                        
-                       // dd("Email is Sent.");
+                      
                         return redirect()->back()->with('success','Booking successfully submitted!');
                      }else{
                         return redirect()->back()->with('error',' This Room is already booked for this date and time please choose another room or Date time.');
@@ -97,8 +97,7 @@ class BookingController extends Controller
 
     public function search_room(Request $request)
     {
-//      $arr  = in_array('medium', $request->size_room);
-// dd($arr);
+
     if($request->corridor != '' && $request->size_room != '')
     {
         
@@ -118,7 +117,6 @@ class BookingController extends Controller
         $corridor=$request->corridor;
         $room_details['room_details']=RoomDetails::whereIn('corridor_id', $corridor)->get();
     }else{
-        //$search['query']=RoomDetails::get();
         $room_details['room_details']=RoomDetails::get();
         return view('front.index',$room_details);
     }
@@ -130,13 +128,11 @@ class BookingController extends Controller
 public function CheckRoom(Request $request)
 {
  
-    // dd($request->input());
     $check_BookRoom=BookingRoom::where('corridor_id',$request->corridorId )
     ->whereTime('end_time','>',$request->start_time)
     ->whereDate('start_date', '=',$request->start_date)
     ->orderBy('id','DESC')
     ->first();
-    //  dd($check_BookRoom);
     if($check_BookRoom != null)
     {
                 $currentRoom= $check_BookRoom->room_id;
@@ -148,33 +144,25 @@ public function CheckRoom(Request $request)
                 {
                    $oneRoom= $check_BookRoom->room_id - 8;
                 }
-               // dd($firstRoom);
-                //dd( $currentRoom, $firstRoom, $lastRoom);
-                //dd($check_BookRoom);
-                //dd( $check_BookRoom, $currentRoom,$firstRoom,  $lastRoom);
-                //dd($request->roomId ==  $firstRoom);
+              
                 if( $request->roomId ==  $firstRoom)
                 {
-                    //return back()->with('FirstRoom',"First Room ".$firstRoom." Not Booking");
                     return response()->json(['status'=>'FirstRoom']);
 
                 }else if($request->roomId == $lastRoom)
                 {
                     return response()->json(['status'=>'LastRoom']);
-                   // return back()->with('LastRoom',"First Room ".$firstRoom." Not Booking");
 
                 }else if($request->roomId == $currentRoom)
                 {
                   
                     return response()->json(['status'=>'success']);
-                   // return back()->with('LastRoom',"First Room ".$firstRoom." Not Booking");
 
                 }
                 else if($request->roomId == $oneRoom)
                 {
                   
                     return response()->json(['status'=>'FirstRoom']);
-                   // return back()->with('LastRoom',"First Room ".$firstRoom." Not Booking");
 
                 }
 
