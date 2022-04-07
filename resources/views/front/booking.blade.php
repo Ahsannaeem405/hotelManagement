@@ -287,7 +287,7 @@ if (isset($_GET['corridor_id'])) {
     $(document).ready(function() {
 
         $('.start_date').on('change',function(){
-            var roomId = $('room_id').val();
+            var roomId = $('.room_id').val();
             var corridorId = $('.corridor_id').val();
             var start_date = $(this).val();
             var start_time = $('.start_time').val();

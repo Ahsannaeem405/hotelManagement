@@ -127,13 +127,13 @@ class BookingController extends Controller
 
 public function CheckRoom(Request $request)
 {
- dd($request->input());
+
     $check_BookRoom=BookingRoom::where('corridor_id',$request->corridorId )
     ->whereTime('end_time','>',$request->start_time)
     ->whereDate('start_date', '=',$request->start_date)
     ->orderBy('id','DESC')
     ->first();
-    dd( $check_BookRoom);
+
     if($check_BookRoom != null)
     {
                 $currentRoom= $check_BookRoom->room_id;
