@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function(){
     Route::get('/booked',[BookingController::class,'booked']);
     Route::get('/booking',[BookingController::class,'booking']);
     Route::get('/getRoom',[BookingController::class,'getRoom']);
+    Route::get('/CheckRoom',[BookingController::class,'CheckRoom']);
     Route::post('/roomBooing',[BookingController::class,'roomBooing']);
     Route::get('/search_room',[BookingController::class,'search_room']);
 });
