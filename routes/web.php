@@ -14,15 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('front/index');
-// });
-// Route::get('/booked', function () {
-//     return view('front/booked');
-// });
-// Route::get('/booking', function () {
-//     return view('front/booking');
-// });
+
 
 Route::middleware(['auth'])->group(function(){
     Route::get('/',[BookingController::class,'index']);

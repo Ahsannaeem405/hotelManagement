@@ -210,6 +210,26 @@ if (isset($_GET['corridor_id'])) {
         </div>
     </div>
 
+    <div class="modal fade" id="already" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="exampleModalLongTitle">Already Booking.</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-dark">
+                    This Room is already booked for this date and time please choose another room or Date time.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 
     <div class="modal fade" id="successCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
@@ -281,7 +301,11 @@ if (isset($_GET['corridor_id'])) {
                     'start_time': start_time,
                 },
                 success: function(data) {
-                 
+                    if(data.status == 'Already')
+                    {
+                        
+                        $('#already').modal('show');
+                    }
                     if(data.status == 'FirstRoom' || data.status == 'LastRoom')
                     {
                         $('.book-btn').hide();
@@ -290,13 +314,11 @@ if (isset($_GET['corridor_id'])) {
                     }else{
                         $('.book-btn').show();
                     }
-                    if(data.status == 'success')
-                    {
-                        alert('already booked');
-                    }
-                 
+                  
                     //$('.room').empty().append(data);
                 }
+                
+                 
             });
         });
         $('.start_time').on('change',function(){
@@ -323,9 +345,10 @@ if (isset($_GET['corridor_id'])) {
                     }else{
                         $('.book-btn').show();
                     }
-                    if(data.status == 'success')
+                    if(data.status == 'Already')
                     {
-                        alert('already booked');
+                        
+                        $('#Already').modal('show');
                     }
                  
                     //$('.room').empty().append(data);
