@@ -133,18 +133,14 @@ public function CheckRoom(Request $request)
     ->whereDate('start_date', '=',$request->start_date)
     ->orderBy('id','DESC')
     ->first();
-    
+    dd( $check_BookRoom);
     if($check_BookRoom != null)
     {
                 $currentRoom= $check_BookRoom->room_id;
-                $totalRoom=9;
                
                 $firstRoom=$currentRoom - 1;
                 $lastRoom=$currentRoom + 1;
-                if($check_BookRoom->room_id ==  $totalRoom)
-                {
-                   $oneRoom= $check_BookRoom->room_id - 8;
-                }
+               
               
                 if( $request->roomId ==  $firstRoom)
                 {
@@ -160,15 +156,7 @@ public function CheckRoom(Request $request)
                     return response()->json(['status'=>'Already']);
 
                 }
-                if(isset($oneRoom))
-                {
-                    if($request->roomId == $oneRoom)
-                    {
-                      
-                        return response()->json(['status'=>'FirstRoom']);
-    
-                    }
-                }
+              
                
 
     }
