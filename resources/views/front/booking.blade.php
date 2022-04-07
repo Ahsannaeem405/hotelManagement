@@ -26,11 +26,11 @@ if (isset($_GET['corridor_id'])) {
                             <strong>{{ $message }}</strong>
                         </div>
                     @endif --}}
-                    @if ($message = Session::get('error'))
+                    {{-- @if ($message = Session::get('error'))
                         <div class="alert alert-danger ">
                             <strong>{{ $message }}</strong>
                         </div>
-                    @endif
+                    @endif --}}
                     <form action="{{ url('roomBooing') }}" method="POST">
                         @csrf
                         <div class="row">
@@ -272,10 +272,10 @@ if (isset($_GET['corridor_id'])) {
             });
         </script>
     @endif
-    @if ($message = Session::get('success'))
+    @if ($message = Session::get('error'))
         <script>
             $(document).ready(function() {
-                $('#successCenter').modal('show');
+                $('#already').modal('show');
             });
         </script>
     @endif
