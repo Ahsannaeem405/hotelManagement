@@ -286,6 +286,42 @@ if (isset($_GET['corridor_id'])) {
 <script>
     $(document).ready(function() {
 
+        $('.start_date').on('change',function(){
+            var roomId = $('room_id').val();
+            var corridorId = $('.corridor_id').val();
+            var start_date = $(this).val();
+            var start_time = $('.start_time').val();
+            $.ajax({
+                url: '{{ URL::to('/CheckRoom') }}',
+                type: 'get',
+                data: {
+                    'roomId': roomId,
+                    'corridorId': corridorId,
+                    'start_date': start_date,
+                    'start_time': start_time,
+                },
+                success: function(data) {
+                    if(data.status == 'Already')
+                    {
+                        
+                        $('#already').modal('show');
+                    }
+                    if(data.status == 'FirstRoom' || data.status == 'LastRoom')
+                    {
+                        $('.book-btn').hide();
+                        $('#exampleModalCenter').modal('show');
+
+                    }else{
+                        $('.book-btn').show();
+                    }
+                  
+                    //$('.room').empty().append(data);
+                }
+                
+                 
+            });
+        });
+
         $('.room_id').on('change',function(){
             var roomId = $(this).val();
             var corridorId = $('.corridor_id').val();
