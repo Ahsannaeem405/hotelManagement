@@ -258,10 +258,10 @@ if (isset($_GET['corridor_id'])) {
         </div>
     </div>
 
-    @if ($message = Session::get('FirstRoom'))
+    @if ($message = Session::get('success'))
         <script>
             $(document).ready(function() {
-                $('#exampleModalCenter').modal('show');
+                $('#successCenter').modal('show');
             });
         </script>
     @endif
