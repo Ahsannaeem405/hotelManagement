@@ -304,7 +304,7 @@ if (isset($_GET['corridor_id'])) {
                 success: function(data) {
                     if(data.status == 'Already')
                     {
-                        
+                      
                         $('#already').modal('show');
                     }
                     if(data.status == 'FirstRoom' || data.status == 'LastRoom')
@@ -385,7 +385,7 @@ if (isset($_GET['corridor_id'])) {
                     if(data.status == 'Already')
                     {
                         
-                        $('#Already').modal('show');
+                        $('#already').modal('show');
                     }
                  
                     //$('.room').empty().append(data);

@@ -133,7 +133,6 @@ public function CheckRoom(Request $request)
     ->whereDate('start_date', '=',$request->start_date)
     ->orderBy('id','DESC')
     ->first();
-
     if($check_BookRoom != null)
     {
                 $currentRoom= $check_BookRoom->room_id;
