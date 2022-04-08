@@ -75,7 +75,7 @@ if (isset($_GET['corridor_id'])) {
                                     <label>Corridor</label>
                                     <select class="form-control corridor_id @error('corridor_id') is-invalid @enderror"
                                         @if (isset($corridor)) disabled @endif name="corridor_id"
-                                        id="inputGroupSelect01">
+                                        id="corridor">
 
                                         <option value="1"
                                             @if (isset($corridor)) @if ($corridor == 1) selected @endif
