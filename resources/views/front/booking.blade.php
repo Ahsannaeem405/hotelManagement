@@ -6,7 +6,7 @@ if (isset($_GET['corridor_id'])) {
     $room_id = $_GET['room'];
 }
 
-// dd( $room);
+//  dd( $room_id);
 
 @endphp
 @extends('front.layout.header')
@@ -110,7 +110,7 @@ if (isset($_GET['corridor_id'])) {
                                         @endforeach
                                     </select>
                                     @if (isset($room))
-                                        <input type="hidden" value="{{ $room_id }}" name="room_id">
+                                        <input type="hidden" value="{{ $room_id }}" class="roomId" name="room_id">
                                     @endif
                                     @error('room_id')
                                         <span class="invalid-feedback" role="alert">
@@ -287,8 +287,9 @@ if (isset($_GET['corridor_id'])) {
     $(document).ready(function() {
 
         $('.start_date').on('change',function(){
-            var roomId = $('.room_id').val();
-      
+            var roomId = $('.room').val();
+            var roomIdA = $('.roomId').val();
+
             var corridorId = $('.corridor_id').val();
             var start_date = $(this).val();
             var start_time = $('.start_time').val();
@@ -297,6 +298,7 @@ if (isset($_GET['corridor_id'])) {
                 type: 'get',
                 data: {
                     'roomId': roomId,
+                    'roomIdA': roomIdA,
                     'corridorId': corridorId,
                     'start_date': start_date,
                     'start_time': start_time,
@@ -360,6 +362,8 @@ if (isset($_GET['corridor_id'])) {
         });
         $('.start_time').on('change',function(){
             var roomId = $('.room_id').val();
+            var roomIdA = $('.roomId').val();
+
             var corridorId = $('.corridor_id').val();
             var start_date = $('.start_date').val();
             var start_time = $(this).val();
@@ -368,6 +372,7 @@ if (isset($_GET['corridor_id'])) {
                 type: 'get',
                 data: {
                     'roomId': roomId,
+                    'roomIdA': roomIdA,
                     'corridorId': corridorId,
                     'start_date': start_date,
                     'start_time': start_time,

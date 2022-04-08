@@ -68,6 +68,7 @@ class BookingController extends Controller
                         $roomBook->user_id=Auth::user()->id;
                         $roomBook->corridor_id=$request->corridor_id;
                         $roomBook->room_id=$request->room_id;
+                        $roomBook->room_id=$request->room_id;
                         $roomBook->name=$request->name;
                         $roomBook->no_people=$request->no_people;
                         $roomBook->email=$request->email;
@@ -127,29 +128,38 @@ class BookingController extends Controller
 
 public function CheckRoom(Request $request)
 {
+// dd($request->input());
 
     $check_BookRoom=BookingRoom::where('corridor_id',$request->corridorId )
     ->whereTime('end_time','>',$request->start_time)
     ->whereDate('start_date', '=',$request->start_date)
     ->orderBy('id','DESC')
     ->first();
+    if($request->roomIdA !=null)
+    {
+        $roomId= $request->roomIdA;
+    }else{
+        $roomId= $request->roomId;
+    }
+    // dd( $check_BookRoom);
     if($check_BookRoom != null)
     {
+       
                 $currentRoom= $check_BookRoom->room_id;
                
                 $firstRoom=$currentRoom - 1;
                 $lastRoom=$currentRoom + 1;
                
-              
-                if( $request->roomId ==  $firstRoom)
+                // dd($currentRoom,$firstRoom,$lastRoom,$request->roomId);
+                if( $roomId ==  $firstRoom)
                 {
                     return response()->json(['status'=>'FirstRoom']);
 
-                }else if($request->roomId == $lastRoom)
+                }else if($roomId == $lastRoom)
                 {
                     return response()->json(['status'=>'LastRoom']);
 
-                }else if($request->roomId == $currentRoom)
+                }else if($roomId == $currentRoom)
                 {
                   
                     return response()->json(['status'=>'Already']);
